@@ -1,0 +1,51 @@
+﻿@model GNG_v0._2.Models.User
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <!-- sign in -->
+    <div class="sign section--full-bg" data-bg="img/bg2.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="sign__content">
+                        <!-- registration form -->
+                        <form action="#" class="sign__form" method="post">
+                            <a href="/home/index" class="sign__logo" >
+                                <img src="~/img/logo.svg" alt="">
+                            </a>
+
+                            <div class="sign__group">
+                                <input asp-for="Name" class="sign__input" placeholder="Name" >
+                                <span asp-validation-for="Name" class="text-danger" style="color:red;font-size:60%"></span>
+                            </div>
+
+                            <div class="sign__group">
+                                <input asp-for="Email" class="sign__input" placeholder="Email" >
+                                <span asp-validation-for="Email" class="text-danger" style="color:red;font-size:60%"></span>
+                            </div>
+
+                            <div class="sign__group">
+                                <input asp-for="Password" class="sign__input" placeholder="Password" >
+                                <span asp-validation-for="Password" class="text-danger" style="color:red;font-size:60%"></span>
+                            </div>
+
+                            <div class="sign__group sign__group--checkbox">
+                                <input id="remember" name="remember" type="checkbox" checked="checked">
+                                <label for="remember">I agree to the <a href="Privacy">Privacy Policy</a></label>
+                            </div>
+
+                            <button class="sign__btn" type="submit">Sign up</button>
+
+                            <span class="sign__text">Already have an account? <a href="Signin">Sign in!</a></span>
+                        </form>
+                        <!-- registration form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</body>
+</html>
