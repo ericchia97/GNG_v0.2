@@ -9,7 +9,7 @@ namespace GNG_v0._2.Models
 {
     public class User
     {
-        
+        [Required]
         [Display(Name = "ID")]
         public int Id { get; set; }
 

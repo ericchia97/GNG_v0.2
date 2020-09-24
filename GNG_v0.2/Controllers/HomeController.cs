@@ -13,16 +13,21 @@ namespace GNG_v0._2.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly UserRepository _userRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+ 
+        public HomeController(ILogger<HomeController> logger, UserRepository userRepository)
         {
             _logger = logger;
+            _userRepository = userRepository;
         }
 
         public IActionResult Index()
         {
-            return View("Index","_Layout");
+            var q = _userRepository.GetAllUsers();
+            return View(q);
         }
+
 
         public IActionResult Detail()
         {
@@ -59,23 +64,21 @@ namespace GNG_v0._2.Controllers
             return View("Privacy", "_Layout");
         }
 
-        public IActionResult SignUp()
+
+        [HttpGet]
+        public ViewResult SignUp()
         {
+
             return View();
         }
 
         [HttpPost]
         public IActionResult SignUp(User model)
         {
+            
             if(ModelState.IsValid)
             {
-                User newUser = new User
-                {
-                    Name = model.Name,
-                    Email = model.Email,
-                    Password = model.Password
-                    
-                };
+                User newUser = _userRepository.Register(model);
                 return RedirectToAction("Index");
             }
             return View();
