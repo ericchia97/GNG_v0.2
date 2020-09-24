@@ -14,10 +14,10 @@ namespace GNG_v0._2.Models
         }
         public User Delete(int ID)
         {
-            User delete = context.Users.Find();
+            User delete = context.UsersTable.Find();
             if(delete != null)
             {
-                context.Users.Remove(delete);
+                context.UsersTable.Remove(delete);
                 context.SaveChanges();
             }
             return delete;
@@ -25,24 +25,24 @@ namespace GNG_v0._2.Models
 
         public IEnumerable<User> GetAllUsers()
         {
-            return context.Users;
+            return context.UsersTable;
         }
 
         public User GetUser(int ID)
         {
-            return context.Users.Find(ID);
+            return context.UsersTable.Find(ID);
         }
 
         public User Register(User users)
         {
-            context.Users.Add(users);
+            context.UsersTable.Add(users);
             context.SaveChanges();
             return users;
         }
 
         public User Update(User users)
         {
-            var user = context.Users.Attach(users);
+            var user = context.UsersTable.Attach(users);
             user.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             context.SaveChanges();
             return users;

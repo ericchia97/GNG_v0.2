@@ -49,10 +49,6 @@ namespace GNG_v0._2.Controllers
             return View("lvlupcatalog", "_Layout");
         }
 
-        public IActionResult signin()
-        {
-            return View("signin", "_Layout");
-        }
 
         public IActionResult Forgot()
         {
@@ -65,24 +61,7 @@ namespace GNG_v0._2.Controllers
         }
 
 
-        [HttpGet]
-        public ViewResult SignUp()
-        {
-
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult SignUp(User model)
-        {
-            
-            if(ModelState.IsValid)
-            {
-                User newUser = _userRepository.Register(model);
-                return RedirectToAction("Index");
-            }
-            return View();
-        }
+       
 
        
 
