@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GNG_v0._2.Models;
+using GNG_v0._2.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,10 +18,6 @@ namespace GNG_v0._2.Controllers
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
-        }
-        public IActionResult Signin()
-        {
-            return View("Signin", "_Layout");
         }
 
         [HttpGet]
@@ -53,6 +50,39 @@ namespace GNG_v0._2.Controllers
                 
             }
             return View(model);
+        }
+
+        [HttpGet]
+        public ViewResult SignIn()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SignIn(LoginViewModel loginModel)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var userEmail = await userManager.FindByEmailAsync(loginModel.Email);
+                var result = await signInManager.PasswordSignInAsync(userEmail, loginModel.Password, loginModel.RememberMe, false);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "home");
+                }
+
+                ModelState.AddModelError("", "Your username or password is not matched.");
+            }
+            return View(loginModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Index", "home");
         }
     }
 }

@@ -61,7 +61,7 @@
     <Folder Include="publishedprofiles\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\UserTable.sql" />
+    <Build Include="dbo\Tables\UsersTable.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="publishedprofiles\GNGDatabase.publish.xml" />

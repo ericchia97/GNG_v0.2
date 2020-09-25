@@ -1,4 +1,4 @@
-﻿
+﻿@model GNG_v0._2.ViewModels.LoginViewModel
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,25 +10,27 @@
                 <div class="col-12">
                     <div class="sign__content">
                         <!-- authorization form -->
-                        <form action="#" class="sign__form">
+                        <form action="#" class="sign__form" method="post">
                             <a href="index.html" class="sign__logo">
                                 <img src="~/img/logo.svg" alt="">
                             </a>
 
                             <div class="sign__group">
-                                <input type="text" class="sign__input" placeholder="Email">
+                                <input asp-for="Email" class="sign__input" placeholder="Email">
+                                <span asp-validation-for="Email" class="text-danger" style="color:red;font-size:60%"></span>
                             </div>
 
                             <div class="sign__group">
-                                <input type="password" class="sign__input" placeholder="Password">
+                                <input asp-for="Password" class="sign__input" placeholder="Password">
+                                <span asp-validation-for="Password" class="text-danger" style="color:red;font-size:60%"></span>
                             </div>
 
                             <div class="sign__group sign__group--checkbox">
-                                <input id="remember" name="remember" type="checkbox" checked="checked">
+                                <input asp-for="RememberMe" name="remember" type="checkbox" checked="checked">
                                 <label for="remember">Remember Me</label>
                             </div>
 
-                            <button class="sign__btn" type="button">Sign in</button>
+                            <button class="sign__btn" type="submit">Sign in</button>
 
                             <span class="sign__text">Don't have an account? <a href="Signup">Sign up!</a></span>
 
